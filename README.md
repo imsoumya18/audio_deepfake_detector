@@ -82,28 +82,29 @@ A17 (36.8% EER) represents a near-complete failure — the model is barely bette
 
 ## 🏗️ Architecture Overview
 
-```mermaid
-flowchart TD
-    A[Audio File\n.wav / .flac] --> B[load_waveform\nsrc/data/dataset.py]
-    B --> C[16kHz mono\n64,000 samples]
-
-    C --> D1[MelSpectrogramTransform\nsrc/data/transforms.py]
-    C --> D2[Raw Waveform Path\nfor RawNet2]
-
-    D1 --> E1[Log Mel-Spectrogram\n1 x 128 x 313]
-    D2 --> E2[Waveform Tensor\n1 x 64000]
-
-    E1 --> F1[LCNN\nsrc/models/lcnn.py\n699938 params]
-    E2 --> F2[RawNet2\nsrc/models/rawnet2.py\n4908026 params]
-
-    F1 --> G1[Logits 1x2]
-    F2 --> G2[Logits 1x2]
-
-    G1 --> H[Ensemble\nsrc/models/ensemble.py]
-    G2 --> H
-
-    G1 --> I[Softmax to Label + Confidence]
-    H --> I
+```
+Audio File (.wav / .flac)
+          │
+    load_waveform()          src/data/dataset.py
+          │
+   16 kHz mono · 64,000 samples
+          │
+    ┌─────┴──────┐
+    │             │
+MelSpectrogram  Raw Waveform
+[transforms.py]  (RawNet2 path)
+    │             │
+1×128×313      1×64000
+    │             │
+  LCNN          RawNet2
+699,938 params  4,908,026 params
+    │             │
+ Logits 1×2   Logits 1×2
+    │    └─────────┘
+    │          │
+    │       Ensemble          src/models/ensemble.py
+    │
+ Softmax → Label + Confidence
 ```
 
 ### LCNN Layer Shapes
