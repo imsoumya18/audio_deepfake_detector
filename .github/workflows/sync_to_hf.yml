@@ -11,11 +11,36 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # full history so HF git doesn't reject the push
+          fetch-depth: 0
+
+      - name: Install huggingface_hub
+        run: pip install huggingface_hub
 
       - name: Push to HF Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          git remote add space https://imsoumya18:$HF_TOKEN@huggingface.co/spaces/imsoumya18/audio_deepfake_detector
-          git push space main --force
+          python - <<'EOF'
+          import os
+          from huggingface_hub import HfApi
+
+          api = HfApi(token=os.environ["HF_TOKEN"])
+          api.upload_folder(
+              folder_path=".",
+              repo_id="imsoumya18/audio_deepfake_detector",
+              repo_type="space",
+              ignore_patterns=[
+                  ".git*",
+                  "data/",
+                  "checkpoints/",
+                  "notebooks/",      # PNG images — not needed by the Space
+                  "runs/",
+                  ".venv/",
+                  "__pycache__/",
+                  "*.pyc",
+                  "*.egg-info/",
+                  ".claude/",
+              ],
+          )
+          print("Upload complete!")
+          EOF
