@@ -4,7 +4,7 @@ emoji: 🎙️
 colorFrom: blue
 colorTo: purple
 sdk: gradio
-sdk_version: "5.9.1"
+sdk_version: "5.29.0"
 pinned: false
 ---
 
