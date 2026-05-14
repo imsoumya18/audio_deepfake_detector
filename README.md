@@ -1,3 +1,14 @@
+---
+title: Audio Deepfake Detector
+emoji: 🎙️
+colorFrom: blue
+colorTo: purple
+sdk: gradio
+sdk_version: "4.44.1"
+app_file: demo/app.py
+pinned: false
+---
+
 # Audio Deepfake Detector
 
 > Detect AI-generated speech with a Light CNN trained on ASVspoof 2019 LA — achieving **7.07% EER**, beating the LFCC-GMM baseline of 8.09%.

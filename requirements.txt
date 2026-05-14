@@ -1,0 +1,12 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.2.2+cpu
+torchaudio==2.2.2+cpu
+gradio>=4.0
+soundfile
+numpy
+scipy
+scikit-learn
+matplotlib
+huggingface_hub
+pydub
+librosa

@@ -1,6 +1,7 @@
 import torch
 import gradio as gr
 from pathlib import Path
+from huggingface_hub import hf_hub_download
 
 from src.inference.predict import load_model, predict
 from src.data.dataset import load_waveform
@@ -12,7 +13,11 @@ matplotlib.use("Agg")  # non-interactive backend for Gradio
 import matplotlib.pyplot as plt
 import numpy as np
 
-CHECKPOINT = Path("checkpoints/best.pt")
+# Download checkpoint from HF Hub on first run; cache locally after that.
+_HF_REPO = "imsoumya18/audio-deepfake-detector"
+CHECKPOINT = Path(
+    hf_hub_download(repo_id=_HF_REPO, filename="lcnn_best.pt")
+)
 
 def get_device() -> torch.device:
     if torch.cuda.is_available():
