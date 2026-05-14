@@ -10,3 +10,4 @@ matplotlib
 huggingface_hub
 pydub
 librosa
+-e .
