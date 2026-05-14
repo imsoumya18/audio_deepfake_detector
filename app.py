@@ -46,7 +46,7 @@ def run_inference(audio_path: str):
     waveform = load_waveform(audio_path)
     mel      = transform(waveform).unsqueeze(0)
     cam      = gradcam.compute(mel, target_class=1)
-    mel_np   = mel.squeeze().cpu().numpy()
+    mel_np   = mel.squeeze().cpu().detach().numpy()
 
     fig, axes = plt.subplots(1, 2, figsize=(12, 3))
     axes[0].imshow(mel_np, origin="lower", aspect="auto", cmap="magma")
