@@ -8,21 +8,30 @@ sdk_version: "5.29.0"
 pinned: false
 ---
 
-# Audio Deepfake Detector
+<h1 align="center">🎙️ Audio Deepfake Detector</h1>
 
-> Detect AI-generated speech with a Light CNN trained on ASVspoof 2019 LA — achieving **7.07% EER**, beating the LFCC-GMM baseline of 8.09%.
+<p align="center">
+  <em>Detect AI-generated speech with a Light CNN trained on ASVspoof 2019 LA — <strong>7.07% EER</strong>, beating the LFCC-GMM baseline of 8.09%.</em>
+</p>
 
-[![Python 3.14](https://img.shields.io/badge/python-3.14-blue.svg)](https://www.python.org/)
-[![PyTorch 2.11](https://img.shields.io/badge/pytorch-2.11-ee4c2c.svg)](https://pytorch.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.111-009688.svg)](https://fastapi.tiangolo.com/)
-[![Gradio](https://img.shields.io/badge/Gradio-4.x-orange.svg)](https://gradio.app/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+<p align="center">
+  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.14-3776AB?logo=python&logoColor=white" alt="Python"></a>
+  <a href="https://pytorch.org/"><img src="https://img.shields.io/badge/PyTorch-2.11-EE4C2C?logo=pytorch&logoColor=white" alt="PyTorch"></a>
+  <a href="https://fastapi.tiangolo.com/"><img src="https://img.shields.io/badge/FastAPI-0.111-009688?logo=fastapi&logoColor=white" alt="FastAPI"></a>
+  <a href="https://gradio.app/"><img src="https://img.shields.io/badge/Gradio-5.x-F97316?logo=gradio&logoColor=white" alt="Gradio"></a>
+  <a href="https://www.docker.com/"><img src="https://img.shields.io/badge/Docker-ready-2496ED?logo=docker&logoColor=white" alt="Docker"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+  <a href="https://huggingface.co/spaces/imsoumya18/audio_deepfake_detector"><img src="https://img.shields.io/badge/🤗%20Spaces-Live%20Demo-blue" alt="Live Demo"></a>
+</p>
 
-**Demo:** [Hugging Face Spaces — coming soon](#) | **Docs:** [`docs/`](docs/)
+<p align="center">
+  <strong>🚀 Live Demo:</strong> <a href="https://huggingface.co/spaces/imsoumya18/audio_deepfake_detector">Hugging Face Spaces</a> &nbsp;|&nbsp;
+  <strong>📚 Docs:</strong> <a href="docs/"><code>docs/</code></a>
+</p>
 
 ---
 
-## Overview
+## 🧠 Overview
 
 This project trains and evaluates two neural architectures for **countermeasure (CM)** systems against text-to-speech and voice-conversion spoofing attacks, as defined by the ASVspoof 2019 Logical Access (LA) challenge. The system answers one question: **is this audio clip real human speech or AI-generated?**
 
@@ -35,14 +44,14 @@ The final deployed model is LCNN with **7.07% EER** on the held-out evaluation s
 
 ---
 
-## Results
+## 📊 Results
 
 ### Overall EER Comparison
 
 | Model | Dev EER | Eval EER | vs. Baseline |
 |---|---|---|---|
 | LFCC-GMM Baseline | — | 8.0900% | — |
-| **LCNN (ours)** | **0.0000%** | **7.0724%** | **-1.02 pp** |
+| **LCNN (ours)** | **0.0000%** | **7.0724%** | **-1.02 pp ✅** |
 | RawNet2 (ours) | 2.4700% | 12.7814% | +4.69 pp |
 | Ensemble (average) | — | 10.2392% | +2.15 pp |
 | Ensemble (learned LR) | — | 9.9167% | +1.83 pp |
@@ -53,25 +62,25 @@ Lower EER is better. Baseline from the ASVspoof 2019 paper (Todisco et al., 2019
 
 | Attack | EER (%) | Difficulty | Notes |
 |---|---|---|---|
-| A07 | 0.0000 | Easy | Vocoder artifacts at high freq — perfect detection |
-| A08 | 0.8158 | Easy | Traditional waveform concatenation |
-| A09 | 0.1224 | Easy | Waveform filtering — slight low-freq artifacts |
-| A10 | 0.5846 | Easy | NN-based TTS |
-| A11 | 0.3663 | Easy | Transformer TTS |
-| A12 | 0.7750 | Easy | WaveNet vocoder |
-| A13 | 0.7937 | Easy | Waveform synthesis |
-| A14 | 0.5088 | Easy | Statistical parametric synthesis |
-| A15 | 1.5228 | Moderate | Hybrid neural/statistical |
-| A16 | 0.0000 | Easy | Waveform concatenation |
-| **A17** | **36.8457** | **Hard** | Neural codec — model fails completely |
-| A18 | 9.7477 | Hard | Neural codec variant |
-| A19 | 0.0611 | Easy | Traditional synthesis |
+| A07 | 0.0000 | 🟢 Easy | Vocoder artifacts at high freq — perfect detection |
+| A08 | 0.8158 | 🟢 Easy | Traditional waveform concatenation |
+| A09 | 0.1224 | 🟢 Easy | Waveform filtering — slight low-freq artifacts |
+| A10 | 0.5846 | 🟢 Easy | NN-based TTS |
+| A11 | 0.3663 | 🟢 Easy | Transformer TTS |
+| A12 | 0.7750 | 🟢 Easy | WaveNet vocoder |
+| A13 | 0.7937 | 🟢 Easy | Waveform synthesis |
+| A14 | 0.5088 | 🟢 Easy | Statistical parametric synthesis |
+| A15 | 1.5228 | 🟡 Moderate | Hybrid neural/statistical |
+| A16 | 0.0000 | 🟢 Easy | Waveform concatenation |
+| **A17** | **36.8457** | 🔴 **Hard** | Neural codec — model fails completely |
+| A18 | 9.7477 | 🔴 Hard | Neural codec variant |
+| A19 | 0.0611 | 🟢 Easy | Traditional synthesis |
 
 A17 (36.8% EER) represents a near-complete failure — the model is barely better than random for this neural codec attack type.
 
 ---
 
-## Architecture Overview
+## 🏗️ Architecture Overview
 
 ```mermaid
 flowchart TD
@@ -138,7 +147,7 @@ Linear(1024->2)                                 [B, 2]
 
 ---
 
-## Quick Start
+## ⚡ Quick Start
 
 ### 1. Install
 
@@ -233,7 +242,7 @@ python demo/app.py
 
 ---
 
-## Grad-CAM Findings
+## 🔍 Grad-CAM Findings
 
 Grad-CAM hooks into the last convolutional block (`model.features[9]`) of the trained LCNN to reveal which time-frequency regions drove each prediction.
 
@@ -246,11 +255,11 @@ Grad-CAM hooks into the last convolutional block (`model.features[9]`) of the tr
 | A17 spoof (36.8% EER) | Mid-low frequencies, diffuse, weak | Model has no learned signal for neural codecs |
 | A18 spoof (9.7% EER) | Similar to A17, slightly more signal | Partially detectable but not reliably |
 
-**Key insight:** LCNN learned a vocoder-specific detector, not a general speech-authenticity detector. It checks for the characteristic high-frequency spectral artifacts that 2017–2019 era neural vocoders leave behind. Neural codec attacks do not produce these artifacts, so the model is effectively blind to them.
+> **Key insight:** LCNN learned a vocoder-specific detector, not a general speech-authenticity detector. It checks for the characteristic high-frequency spectral artifacts that 2017–2019 era neural vocoders leave behind. Neural codec attacks do not produce these artifacts, so the model is effectively blind to them.
 
 ---
 
-## Failure Analysis: A17 and A18
+## ⚠️ Failure Analysis: A17 and A18
 
 ### Why These Attacks Break the Model
 
@@ -277,7 +286,7 @@ The ensemble did not help: both LCNN and RawNet2 fail on A17/A18, so fusing thei
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 audio_deepfake_detector/
@@ -321,14 +330,14 @@ audio_deepfake_detector/
 ├── runs/                        # TensorBoard event logs
 ├── notebooks/                   # Grad-CAM output images
 ├── tests/                       # Unit tests
-├── docs/                        # Detailed documentation (this folder)
+├── docs/                        # Detailed documentation
 ├── pyproject.toml
 └── .gitignore
 ```
 
 ---
 
-## Documentation
+## 📖 Documentation
 
 Full deep-dive documentation is in [`docs/`](docs/):
 
@@ -346,7 +355,19 @@ Full deep-dive documentation is in [`docs/`](docs/):
 
 ---
 
-## Stack
+## 🛠️ Stack
+
+<p align="center">
+  <img src="https://img.shields.io/badge/PyTorch-EE4C2C?logo=pytorch&logoColor=white" />
+  <img src="https://img.shields.io/badge/torchaudio-EE4C2C?logo=pytorch&logoColor=white" />
+  <img src="https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white" />
+  <img src="https://img.shields.io/badge/Gradio-F97316?logo=gradio&logoColor=white" />
+  <img src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white" />
+  <img src="https://img.shields.io/badge/scikit--learn-F7931E?logo=scikitlearn&logoColor=white" />
+  <img src="https://img.shields.io/badge/NumPy-013243?logo=numpy&logoColor=white" />
+  <img src="https://img.shields.io/badge/TensorBoard-FF6F00?logo=tensorflow&logoColor=white" />
+  <img src="https://img.shields.io/badge/Hugging%20Face-FFD21E?logo=huggingface&logoColor=black" />
+</p>
 
 | Component | Library / Version |
 |---|---|
@@ -357,14 +378,14 @@ Full deep-dive documentation is in [`docs/`](docs/):
 | ML utilities | scikit-learn |
 | Training monitoring | TensorBoard |
 | REST API | FastAPI + uvicorn |
-| Browser demo | Gradio |
+| Browser demo | Gradio 5.x |
 | Visualization | matplotlib |
 | Configuration | PyYAML |
 | Runtime environment | Python 3.14, Apple Silicon MPS |
 
 ---
 
-## Citation
+## 📝 Citation
 
 If you use this work, please cite the ASVspoof 2019 dataset:
 
