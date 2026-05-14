@@ -31,7 +31,7 @@ jobs:
               repo_type="space",
               ignore_patterns=[
                   ".git*",
-                  "data/",
+                  "/data/",     # only top-level data/, not src/data/
                   "checkpoints/",
                   "notebooks/",      # PNG images — not needed by the Space
                   "runs/",
