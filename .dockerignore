@@ -1,0 +1,38 @@
+# Version control
+.git/
+.gitignore
+
+# Python cache and build artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+
+# Training data — never bake datasets into an image
+data/
+
+# Trained checkpoints — mounted at runtime, not baked in
+checkpoints/
+
+# TensorBoard logs — only needed locally
+runs/
+
+# Dev / IDE
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+# Docs and notebooks — not needed by the server
+docs/
+notebooks/
+README.md
+
+# Scripts and configs — only needed for training, not inference
+scripts/
+configs/
+
+# Demo app — separate concern from the FastAPI server
+demo/

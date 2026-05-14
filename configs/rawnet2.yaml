@@ -1,0 +1,22 @@
+model: rawnet2
+
+data:
+  sample_rate: 16000
+  max_seconds: 4
+  batch_size: 32
+  num_workers: 4
+
+training:
+  epochs: 100
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+  patience: 15
+
+scheduler:
+  T_max: 100
+  eta_min: 0.000001
+
+paths:
+  data_root: data
+  checkpoint_dir: checkpoints/rawnet2
+  log_dir: runs/rawnet2

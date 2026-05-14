@@ -1,0 +1,22 @@
+model: lcnn
+
+data:
+  sample_rate: 16000
+  max_seconds: 4
+  batch_size: 32
+  num_workers: 4
+
+training:
+  epochs: 50
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+  patience: 10          # early stopping: stop if dev EER doesn't improve for 10 epochs
+
+scheduler:
+  T_max: 50             # CosineAnnealingLR period = total epochs
+  eta_min: 0.000001     # minimum learning rate at end of cosine cycle
+
+paths:
+  data_root: data
+  checkpoint_dir: checkpoints
+  log_dir: runs/lcnn

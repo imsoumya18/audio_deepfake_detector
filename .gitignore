@@ -1,0 +1,30 @@
+# Data — never commit raw audio (gigabytes)
+data/
+
+# Model checkpoints — large binary files, mount at runtime
+checkpoints/
+
+# Experiment tracking logs (generated artifacts)
+runs/
+wandb/
+
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# Claude Code internal tooling
+.claude/

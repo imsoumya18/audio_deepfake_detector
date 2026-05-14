@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "audio_deepfake_detector"
+version = "0.1.0"
+requires-python = ">=3.14"
+dependencies = [
+    "torch>=2.2",
+    "torchaudio>=2.2",
+    "librosa>=0.10",
+    "soundfile",
+    "numpy",
+    "scipy",
+    "scikit-learn",
+    "tensorboard",
+    "fastapi",
+    "uvicorn[standard]",
+    "gradio",
+    "pydantic",
+    "pyyaml",
+    "tqdm",
+    "matplotlib",
+    "python-dotenv",
+    "httpx",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
