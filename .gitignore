@@ -1,5 +1,5 @@
 # Data — never commit raw audio (gigabytes)
-data/
+/data/
 
 # Model checkpoints — large binary files, mount at runtime
 checkpoints/
